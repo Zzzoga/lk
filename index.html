@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<title>Личный кабинет</title>
+	<meta name="description" content="Юридическое бюро Буркин и партнеры">
+	<link rel="shortcut icon" href="img/favicon.svg" type="image/x-icon">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link rel="stylesheet" href="libs/swiper/swiper-bundle.min.css">
+	<link rel="stylesheet" href="libs/aos/aos.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/media.css">
+	<link rel="stylesheet" href="css/fonts.css">
+</head>
+
+<body>
+
+	<section class="auth">
+		<video loop autoplay class="bg">
+			<source src="video/bg2.mp4" type="video/mp4">
+		</video>
+		<div class="container">
+			<div class="auth__wrapper">
+				<div class="auth__top">
+					<p class="auth__logo">кабинетриелтора.ру</p>
+				</div>
+
+				<div class="auth__content">
+					<div class="auth__accordeon__header">
+						<p class="auth__accordeon__header__item active" data-auth="auth">Авторизация</p>
+						<p class="auth__accordeon__header__item" data-auth="reg">Регистрация</p>
+					</div>
+
+					<div class="auth__accordeon__body">
+						<div class="auth__accordeon__body__item active" data-auth="auth">
+							<form action="#">
+								<input type="tel" name="phone" id="auth__phone" class="input" placeholder="Номер телефона">
+								<input type="submit" value="Войти" class="btn submit">
+							</form>
+						</div>
+
+						<div class="auth__accordeon__body__item" data-auth="reg">
+							<form action="#">
+								<input type="text" name="name" id="reg__name" class="input" placeholder="Имя">
+								<input type="tel" name="phone" id="reg__phone" class="input" placeholder="Номер телефона">
+								<input type="email" name="phone" id="reg__mail" class="input" placeholder="E-mail">
+								<input type="submit" value="Регистрация" class="btn submit">
+							</form>
+						</div>
+
+						<div class="auth__accordeon__body__item" data-auth="sms-auth">
+							<div class="form__info">
+								<p>На указанный номер отправлен код подтверждения.<br>Введите его в поле ниже. </p>
+								<a href="#" class="form__link">Отправить код повторно</a>
+							</div>
+							<form action="#">
+								<input type="number" name="name" id="reg__name" class="input" placeholder="Имя">
+								<input type="submit" value="Войти" class="btn submit">
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<div class="auth__bottom">
+					<p class="auth__copy">Кабинет риелтора © 2025</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="libs/jquery/jquery.min.js"></script>
+	<script src="libs/aos/aos.js"></script>
+	<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=0fe82a33-1e6e-4e85-8627-3e73d77faf16" type="text/javascript"></script>
+	<script src="libs/swiper/swiper-bundle.min.js"></script>
+	<script src="libs/smoothScroll/SmoothScroll.min.js"></script>
+	<script>
+		SmoothScroll({
+			animationTime    : 800,
+			stepSize         : 75,
+	
+			
+			accelerationDelta : 30,  
+			accelerationMax   : 2,   
+	
+	
+			keyboardSupport   : true,  
+			arrowScroll       : 50,
+	
+	
+			pulseAlgorithm   : true,
+			pulseScale       : 4,
+			pulseNormalize   : 1,
+	
+			touchpadSupport   : true,
+		})
+	</script>
+	<script src="js/init.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/map.js"></script>
+	<script>
+		AOS.init();
+	</script>
+
+	<script>
+		async function submitForm(event) {
+			event.preventDefault(); // отключаем перезагрузку/перенаправление страницы
+			if (event.target.querySelector('input[name="name"]').value == '' || event.target.querySelector('input[name="phone"]').value == '') {
+				event.target.closest('.form__container').querySelector('.error__text').classList.add('visible')
+				event.target.querySelector('input[name="name"]').classList.add('error')
+				event.target.querySelector('input[name="phone"]').classList.add('error')
+			} else {
+				event.target.closest('.form__container').querySelector('.error__text').classList.remove('visible')
+				event.target.querySelector('input[name="name"]').classList.remove('error')
+				event.target.querySelector('input[name="phone"]').classList.remove('error')
+
+				setTimeout(() => {
+					event.target.closest('.form__container').querySelector('.sended').classList.add('active')
+					event.target.reset()
+					setTimeout(() => {
+						event.target.closest('.form__container').querySelector('.sended').classList.remove('active')
+					}, 5000)
+				}, 1000)
+				
+				
+			}
+		}
+	</script>
+</body>
+</html>
