@@ -4,10 +4,12 @@
 	--dark: #333;
 	--white: #fff;
 	--black: #111;
-	--green: #45C79E;
+	--green: #63cba5;
 	--brown: #D19983;
 	--blue: #477CE7;
 	--dark-blue: #335eb4;
+	--blue-grey: #f4f6f9;
+	--dark-blue-grey: #e1e5eb;
 }
 
 * {
@@ -297,6 +299,11 @@ main {
     padding: 20px;
 }
 
+nav.nav {
+    position: sticky;
+    top: 20px;
+}
+
 header .left {
     display: flex;
     width: 280px;
@@ -356,7 +363,7 @@ nav.nav ul li a .icon {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 20px;
+    gap: 40px;
 }
 
 .action {
@@ -539,3 +546,491 @@ a.form__link {
 a.form__link:hover {
     color: var(--dark-blue);
 }
+
+.objects__list {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.object__list__header {
+    display: flex;
+    width: 100%;
+    background: var(--blue-grey);
+    font-weight: 600;
+}
+
+.objects__list p {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid var(--dark-blue-grey);
+}
+
+.objects__list p:not(:last-child), .objects__list a p:not(:last-child) {
+    border-right: none;
+}
+
+.object__list__body {
+    display: flex;
+    flex-direction: column;
+}
+
+a.object__item {
+    display: flex;
+}
+
+a.object__item p {
+    border-top: none;
+}
+
+a.object__item:nth-child(2n) {
+    background: var(--blue-grey);
+}
+
+a.object__item:hover {
+    background: var(--dark-blue-grey);
+}
+
+.disabled {
+    display: none;
+}
+
+.filters {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 9;
+    width: 100%;
+}
+
+h3.widget__title {
+    font-size: 1.5em;
+}
+
+form.filters__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    z-index: 9;
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.filter__checks {
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    padding: 15px;
+    background: var(--white);
+    border: 1px solid var(--light-grey);
+    border-radius: 3px;
+    top: 45px;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.filter__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid var(--light-grey);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all .5s ease;
+}
+
+.filter__item:hover {
+    border-color: var(--blue);
+}
+
+.filter__checks button {
+    height: auto;
+    padding: 10px;
+    border-radius: 3px;
+    line-height: 1;
+}
+
+.filter.active .filter__checks {
+    display: flex;
+}
+
+.filter.active .filter__item svg {
+    transform: rotate(180deg);
+}
+
+.objects__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.filter__checks__input {
+    display: flex;
+}
+
+.filter__input {
+    font-family: inherit;
+    padding: 7px;
+    border: 1px solid var(--light-grey);
+}
+
+.filter__input:nth-child(1) {
+    border-right: 1px solid transparent;
+    border-radius: 3px 0 0 3px;
+}
+
+.filter__input:nth-child(2) {
+    border-radius: 0 3px 3px 0;
+}
+
+.filter__input:hover, .filter__input:focus {
+    border-color: var(--blue);
+}
+
+input, button {
+    transition: all .5s ease;
+    outline: 0;
+}
+
+/* ЧЕКБОКС ФИЛЬТРА */
+
+/* Стилизация чекбокса */
+.checkbox-input {
+    width: 0;
+    height: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+/* Оформление состояния checked */
+.checkbox-input:checked + span {
+    color: var(--blue);
+    border-color: var(--blue);
+}
+
+/* Эффект нажатия */
+.checkbox-input:active {
+    filter: brightness(90%);
+}
+
+/* Смена цвета границы при наведении */
+.checkbox-input:hover:not(:disabled) {
+    border-color: var(--blue);
+}
+
+/* Стили для чекбокса при фокусе */
+.checkbox-input:focus {
+    border-color: var(--blue);
+    outline: none;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Отключенный чекбокс */
+.checkbox-input:disabled {
+    filter: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.checkbox-input:disabled ~ .checkbox-label {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+label.checkbox-label {
+    transition: all .5s ease;
+}
+
+.checkbox-item {
+    display: flex;
+}
+
+.filter__checks__list {
+    display: flex;
+    gap: 10px;
+}
+
+label.checkbox-label:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+}
+
+.checkbox-input + span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 32px;
+    width: max-content;
+    height: 32px;
+    padding: 0 10px;
+    border: 1px solid var(--light-grey);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all .5s ease;
+}
+
+.filter__btns {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter__btns .btn {
+    height: auto;
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    line-height: 1;
+    height: 100%;
+}
+
+.filter__btns .btn.filter__reset {
+    background: transparent;
+    color: var(--blue);
+    border: 1px solid var(--blue);
+}
+
+.filter__btns .btn:hover {
+    background: var(--dark-blue);
+    color: var(--white);
+    border-color: var(--dark-blue);
+}
+
+.object__list__nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+a.object__list__nav__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    border: 1px solid var(--light-grey);
+    height: 32px;
+    width: 32px;
+}
+
+a.object__list__nav__btn:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+}
+
+a.object__list__nav__btn:hover > svg path {
+    fill: var(--blue);
+}
+
+.chah__wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+}
+
+.chah__container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.chah__floor__list {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.td.floor__num {
+    color: var(--grey);
+    width: 20px;
+}
+
+a.chah__item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+    line-height: 1;
+    border-radius: 5px;
+    font-size: 1em;
+    background: var(--green);
+    color: var(--white);
+    border: 1px solid transparent;
+}
+
+.chah__item__info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 30px;
+    align-items: center;
+    font-size: .9em;
+}
+
+.chah__item__info.col p span {
+    font-size: 1.25em;
+    font-weight: 600;
+}
+
+.chah__item__info.price {
+    font-size: 1.25em;
+    font-weight: 600;
+}
+
+a.chah__item.sell {
+    background: var(--grey);
+    cursor: default;
+}
+
+a.chah__item:hover {
+    border-color: var(--green);
+    color: var(--black);
+    background: transparent;
+}
+
+a.chah__item.sell:hover {
+    background: var(--grey);
+    border-color: var(--grey);
+    color: var(--white);
+}
+
+.doc__accordeon {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.doc__accordeon__header {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.doc__accordeon__body {
+    width: calc(100% - 220px);
+    display: flex;
+    flex-direction: column;
+}
+
+p.doc__accordeon__header__item {
+    display: flex;
+    height: 36px;
+    align-items: center;
+    padding: 0 15px;
+    background: var(--blue-grey);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .5s ease;
+}
+
+p.doc__accordeon__header__item:hover {
+    background: var(--dark-blue-grey);
+}
+
+p.doc__accordeon__header__item.active,
+p.doc__accordeon__header__item.active:hover {
+    background: var(--blue);
+    color: var(--white);
+}
+
+.doc__accordeon__body__item {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.doc__item,
+.order__item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background: var(--blue-grey);
+}
+
+p.info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+p.info span:first-child {
+    width: 30px;
+    color: var(--grey);
+}
+
+a.download {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+a.download svg {
+    width: 20px;
+    height: 20px;
+}
+
+a.download:hover {
+    border-color: var(--blue);
+}
+
+a.download:hover > svg path {
+    fill: var(--blue);
+}
+
+.doc__accordeon__body__item.active {
+    display: flex;
+}
+
+.order__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.order__header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background: var(--blue-grey);
+    font-weight: 600;
+}
+
+.order__header *, .order__item * {
+    flex: 1;
+    text-align: center;
+}
+
+.order__item a {
+    color: var(--blue);
+}
+
+.order__item a:hover {
+    color: var(--dark-blue);
+}
+

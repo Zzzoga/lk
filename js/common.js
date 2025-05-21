@@ -159,18 +159,33 @@ document.addEventListener('DOMContentLoaded', () => {
 	function tabAccordeon(header, body) {
 		document.querySelectorAll(header).forEach(item => {
 			item.addEventListener('click', e => {
-				const tabData = e.target.dataset.auth
+				const tabData = e.target.dataset.auth ? e.target.dataset.auth : e.target.dataset.tab
+				const tabName = e.target.dataset.auth ? 'auth' : 'tab'
 				console.log(tabData)
 				document.querySelectorAll(header).forEach(item => item.classList.remove('active'))
 				e.target.classList.add('active')
 				
 				document.querySelectorAll(body).forEach(item => item.classList.remove('active'))
-				document.querySelector(body + `[data-auth="${tabData}"]`).classList.add('active')
+				document.querySelector(body + `[data-${tabName}="${tabData}"]`).classList.add('active')
 			})
 		})
 	}
 
 	tabAccordeon('.auth__accordeon__header__item', '.auth__accordeon__body__item')
+	tabAccordeon('p.doc__accordeon__header__item', '.doc__accordeon__body__item')
+
+	// FILTER SHOW/HIDE ITEMS
+	document.querySelectorAll('.filter__item').forEach(item => {
+		item.addEventListener('click', e => {
+			e.preventDefault()
+			if (!e.target.closest('.filter').classList.contains('active')) {
+				document.querySelectorAll('.filter').forEach(item => item.classList.remove('active'))
+				e.target.closest('.filter').classList.add('active')
+			} else {
+				e.target.closest('.filter').classList.remove('active')
+			}
+		})
+	})
 
 })
 
